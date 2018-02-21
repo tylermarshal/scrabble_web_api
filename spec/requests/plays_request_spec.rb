@@ -17,6 +17,8 @@ describe "plays API" do
 
       expect(response).to be_successful
 
+      get "/api/v1/games/#{game.id}"
+
       get_game = JSON.parse(response.body)
 
       expect(get_game["game_id"]).to eq(game.id)
