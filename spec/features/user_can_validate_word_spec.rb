@@ -7,8 +7,8 @@ describe 'a user visits the main page' do
 # * This story should use the Oxford Dictionaries API https://developer.oxforddictionaries.com/documentation
 # * Use endpoint "GET /inflections/{source_lang}/{word_id}" under the "Lemmatron" heading
       visit "/"
-
-      fill_in 'enter-word', :with => 'foxes'
+      
+      fill_in 'enter_word', :with => 'foxes'
 
       click_on("Validate Word")
 
