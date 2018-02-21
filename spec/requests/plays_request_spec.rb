@@ -42,8 +42,8 @@ describe "plays API" do
       post "/api/v1/games/#{game.id}/plays?user_id=1&word=foxez"
 
       message = JSON.parse(response.body)
-      
-      expect(message).to eq({"message": "foxez is not a valid word."})
+
+      expect(message).to eq({"message" => "foxez is not a valid word."})
     end
   end
 end
