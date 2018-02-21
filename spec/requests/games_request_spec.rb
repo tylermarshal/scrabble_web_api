@@ -19,12 +19,12 @@ describe "games API" do
 
       get_game = JSON.parse(response.body)
 
-      expect(get_game[:game_id]).to eq(game.id)
-      expect(get_game[:scores].class).to eq(Array)
-      expect(get_game[:scores].first[:user_id]).to eq(1)
-      expect(get_game[:scores].first[:score]).to eq(15)
-      expect(get_game[:scores].last[:user_id]).to eq(2)
-      expect(get_game[:scores].last[:score]).to eq(15)
+      expect(get_game["game_id"]).to eq(game.id)
+      expect(get_game["scores"].class).to eq(Array)
+      expect(get_game["scores"].first["user_id"]).to eq(1)
+      expect(get_game["scores"].first["score"]).to eq(15)
+      expect(get_game["scores"].last["user_id"]).to eq(2)
+      expect(get_game["scores"].last["score"]).to eq(16)
     end
   end
 end
