@@ -1,6 +1,6 @@
 class OxfordService
 
-  attr_reader :response, :word
+  attr_reader :word
 
   def initialize(word)
     @word = word.downcase
