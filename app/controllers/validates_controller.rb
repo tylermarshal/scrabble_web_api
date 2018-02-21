@@ -6,8 +6,8 @@ class ValidatesController < ApplicationController
       faraday.adapter  Faraday.default_adapter
     end
     response = conn.get("/api/v1/inflections/en/#{params[:enter_word].downcase}")
-    validation = JSON.parse(response.body, symbolize_names: true)
     if response.status == 200
+      validation = JSON.parse(response.body, symbolize_names: true)
       flash[:notice] = "'#{params[:enter_word].downcase}' is a valid word and its root form is '#{validation[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]}'."
     else
       flash[:notice] = "'foxez' is not a valid word."
