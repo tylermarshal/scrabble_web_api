@@ -4,7 +4,6 @@ class OxfordService
 
   def initialize(word)
     @word = word.downcase
-    @response ||= conn.get("/api/v1/inflections/en/#{word}")
   end
 
   def conn
@@ -15,13 +14,21 @@ class OxfordService
     end
   end
 
+  def inflection_response
+    conn.get("/api/v1/inflections/en/#{word}")
+  end
+
   def word_validation
+    response ||= inflection_response
     if response.status == 200
-      validation = JSON.parse(response.body, symbolize_names: true)
-      return "'#{word}' is a valid word and its root form is '#{validation[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]}'."
+      return "'#{word}' is a valid word and its root form is '#{parse(response)[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]}'."
     else
       return "'#{word}' is not a valid word."
     end
+  end
+
+  def parse(response)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
 end
