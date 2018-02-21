@@ -1,5 +1,12 @@
 class OxfordService
 
+  attr_reader :response, :word
+
+  def initialize(word)
+    @word = word.downcase
+    @response ||= conn.get("/api/v1/inflections/en/#{word}")
+  end
+
   def conn
     Faraday.new(:url => 'https://od-api.oxforddictionaries.com') do |faraday|
       faraday.headers['app_id'] = ENV["app_id"]
@@ -8,16 +15,13 @@ class OxfordService
     end
   end
 
-  def word_validation(word)
-    response = conn.get("/api/v1/inflections/en/#{word.downcase}")
+  def word_validation
     if response.status == 200
       validation = JSON.parse(response.body, symbolize_names: true)
-      return "'#{word.downcase}' is a valid word and its root form is '#{validation[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]}'."
+      return "'#{word}' is a valid word and its root form is '#{validation[:results].first[:lexicalEntries].first[:inflectionOf].first[:id]}'."
     else
-      return "'#{word.downcase}' is not a valid word."
+      return "'#{word}' is not a valid word."
     end
   end
-
-
 
 end
