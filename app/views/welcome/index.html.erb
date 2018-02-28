@@ -1,4 +1,7 @@
-<%= form_tag :validates, method: :get do %>
+<% if @validation_response %>
+  <%= @validation_response %>
+<% end %>
+<%= form_tag :root, method: :get do %>
     <%= label_tag "Enter Word" %>
     <%= text_field_tag :enter_word %>
     <%= submit_tag "Validate Word" %>
