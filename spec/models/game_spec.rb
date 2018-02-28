@@ -14,7 +14,7 @@ describe Play do
         chewbacca.plays.create(game: game, word: "dark", score: 9)
         chewbacca.plays.create(game: game, word: "no", score: 2)
 
-        expect(game.score_player_1).to eq({"user_id"=> tyler.id, "score"=>15})
+        expect(game.score_player_1).to eq(15)
       end
     end
     context "#score_player_2" do
@@ -29,7 +29,7 @@ describe Play do
         chewbacca.plays.create(game: game, word: "dark", score: 9)
         chewbacca.plays.create(game: game, word: "no", score: 2)
 
-        expect(game.score_player_2).to eq({"user_id"=> chewbacca.id, "score"=>11})
+        expect(game.score_player_2).to eq(11)
       end
     end
   end

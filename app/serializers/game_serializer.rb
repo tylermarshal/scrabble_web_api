@@ -6,7 +6,10 @@ class GameSerializer < ActiveModel::Serializer
   end
 
   def scores
-    [object.score_player_1, object.score_player_2]
+    [{user_id: object.player_1.id,
+      score: object.score_player_1},
+      {user_id: object.player_2.id,
+      score: object.score_player_2}]
   end
 
 end
